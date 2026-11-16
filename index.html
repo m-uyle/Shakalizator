@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shakalizator</title>
+    <meta name="description" content="In-browser batch image compression and converter tool with visual comparison." />
+    <meta name="theme-color" content="#121215" />
+    <link rel="manifest" href="./assets/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/icon-192.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Shakalizator" />
+    <meta property="og:description" content="In-browser batch image compression and converter tool with visual comparison." />
+    <meta property="og:image" content="./assets/og-image.png" />
+    <meta property="og:url" content="./" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Shakalizator" />
+    <meta name="twitter:description" content="In-browser batch image compression and converter tool with visual comparison." />
+    <meta name="twitter:image" content="./assets/og-image.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/styles/index.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/upng-js@2.1.0/UPNG.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/optipng-js@0.1.2/optipng.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="./src/app/main.js"></script>
+  </body>
+</html>
+

@@ -1,0 +1,190 @@
+@layer shared {
+  .ui-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1-5);
+    border: 1px solid var(--border-control);
+    background: transparent;
+    color: var(--text-primary);
+    font-size: var(--text-size-body);
+    cursor: pointer;
+    /* Keep transparent 1px outline aligned with border for forced-colors accessibility */
+    outline: 1px solid transparent;
+    outline-offset: -1px;
+    user-select: none;
+    -webkit-user-select: none;
+    transition:
+      border-color var(--transition-ui),
+      background-color var(--transition-ui),
+      color var(--transition-ui),
+      opacity var(--transition-ui),
+      transform var(--transition-fast);
+  }
+
+  .ui-btn:disabled {
+    cursor: not-allowed;
+    opacity: var(--opacity-disabled);
+    pointer-events: none;
+  }
+
+  /* Sizes */
+  .ui-btn--full {
+    width: 100%;
+    height: var(--size-control-h);
+    padding: var(--space-0) var(--space-control-px);
+    border-radius: var(--radius-control);
+    font-size: var(--text-size-control);
+  }
+
+  .ui-btn--pill {
+    height: var(--size-pill-h);
+    padding: var(--space-0) var(--space-4);
+    border-radius: var(--radius-pill);
+    border-color: var(--border-control);
+    color: var(--text-secondary);
+    background: transparent;
+  }
+
+  .ui-btn--icon,
+  .ui-btn--pillIcon {
+    aspect-ratio: 1 / 1;
+    padding: var(--space-0);
+    border-radius: var(--radius-pill);
+    flex-shrink: 0;
+  }
+
+  .ui-btn--icon {
+    width: var(--size-icon-btn);
+    height: var(--size-icon-btn);
+    min-width: var(--size-icon-btn);
+    min-height: var(--size-icon-btn);
+  }
+
+  .ui-btn--pillIcon {
+    width: var(--size-pill-h);
+    height: var(--size-pill-h);
+    min-width: var(--size-pill-h);
+    min-height: var(--size-pill-h);
+  }
+
+  /* Variants (specificity kept flat at 0,2,0 via :where() so :focus-visible wins cleanly) */
+  .ui-btn--default {
+    border-color: var(--border-control);
+    color: var(--text-primary);
+    background: transparent;
+  }
+
+  .ui-btn--ghost {
+    border-color: transparent;
+    color: var(--text-secondary);
+    background: transparent;
+  }
+
+  .ui-btn--pillActive {
+    border-color: var(--border-active);
+    color: var(--text-contrast);
+    background: var(--state-active);
+  }
+
+  .ui-btn--pillGhost {
+    border-color: transparent;
+    color: var(--text-primary);
+    background: transparent;
+  }
+
+  /* Interactive states */
+  .ui-btn--default:hover:where(:not(:disabled)) {
+    border-color: var(--border-control-hover);
+    color: var(--text-contrast);
+    background: var(--state-hover);
+  }
+
+  .ui-btn--pill:hover:where(:not(:disabled):not(.ui-btn--pillActive):not(.ui-btn--pillGhost)) {
+    border-color: var(--border-control-hover);
+    color: var(--text-contrast);
+    background: var(--state-active);
+  }
+
+  .ui-btn--default:active:where(:not(:disabled)),
+  .ui-btn--pill:active:where(:not(:disabled):not(.ui-btn--pillActive):not(.ui-btn--pillGhost)) {
+    border-color: var(--border-control-hover);
+    color: var(--text-primary);
+    background: var(--state-hover);
+  }
+
+  .ui-btn--ghost:hover:where(:not(:disabled)) {
+    color: var(--text-primary);
+    background: var(--state-selected);
+  }
+
+  .ui-btn--ghost:active:where(:not(:disabled)) {
+    color: var(--text-primary);
+    background: var(--state-active);
+  }
+
+  .ui-btn--pillActive:active:where(:not(:disabled)) {
+    background: var(--state-selected);
+  }
+
+  .ui-btn--pillGhost:hover:where(:not(:disabled)) {
+    color: var(--text-contrast);
+    background: var(--state-active);
+  }
+
+  .ui-btn--pillGhost:active:where(:not(:disabled)) {
+    color: var(--text-primary);
+    background: var(--state-hover);
+  }
+
+  .ui-btn:active:where(:not(:disabled)) {
+    transition-duration: var(--duration-fast);
+  }
+
+  .ui-btn--full:active:where(:not(:disabled)) {
+    transform: scale(var(--press-scale-control));
+  }
+
+  .ui-btn--pill:active:where(:not(:disabled):not(.ui-btn--pillIcon)) {
+    transform: scale(var(--press-scale-pill));
+  }
+
+  .ui-btn--icon:active:where(:not(:disabled)),
+  .ui-btn--pillIcon:active:where(:not(:disabled)) {
+    transform: scale(var(--press-scale-icon));
+  }
+
+  .ui-btn:focus-visible {
+    border-color: var(--border-focus);
+    outline-color: var(--border-focus);
+  }
+
+  /* CAS 4-Slot Anatomy */
+  .ui-btn__leading,
+  .ui-btn__trailing {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .ui-btn__content {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1-5);
+  }
+
+  .ui-btn__meta {
+    display: inline-flex;
+    align-items: center;
+    color: var(--text-tertiary);
+    font-size: var(--text-size-caption);
+  }
+
+  @media (width <= 30rem) {
+    .ui-btn--pill:where(:not(.ui-btn--pillIcon)) {
+      padding: var(--space-0) var(--space-3);
+    }
+  }
+}
+

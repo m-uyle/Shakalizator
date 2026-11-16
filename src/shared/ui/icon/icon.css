@@ -1,0 +1,54 @@
+@layer shared {
+  .ui-icon {
+    display: block;
+    flex-shrink: 0;
+    pointer-events: none;
+  }
+
+  .ui-icon--chevron,
+  .ui-icon--close {
+    width: var(--size-icon-sm);
+    height: var(--size-icon-sm);
+  }
+
+  .ui-icon--chevron {
+    color: var(--text-secondary);
+    transition: transform var(--transition-ui);
+  }
+
+  .ui-icon--arrow {
+    width: var(--size-icon-xs);
+    height: var(--size-arrow-h);
+  }
+
+  .ui-icon--demo,
+  .ui-icon--alert {
+    width: var(--size-icon-md);
+    height: var(--size-icon-md);
+  }
+
+  .ui-icon--check,
+  .ui-icon--trash,
+  .ui-icon--spinner {
+    width: var(--size-icon-xs);
+    height: var(--size-icon-xs);
+  }
+
+  @keyframes ui-icon-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .ui-icon--spinner {
+    transform-origin: center;
+    animation: ui-icon-spin var(--duration-spin) linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ui-icon--spinner {
+      animation: none;
+    }
+  }
+}
+

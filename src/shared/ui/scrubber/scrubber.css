@@ -1,0 +1,106 @@
+@layer shared {
+  .ui-scrubber {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    height: var(--size-control-h);
+    padding: var(--space-0);
+    border: 1px solid var(--border-control);
+    border-radius: var(--radius-control);
+    background: transparent;
+    overflow: hidden;
+    overflow: clip;
+    isolation: isolate;
+    cursor: ew-resize;
+    touch-action: none;
+    outline: 1px solid transparent;
+    outline-offset: -1px;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: border-color var(--transition-ui), background-color var(--transition-ui), opacity var(--transition-ui);
+    --_scrubber-inner-radius: calc(var(--radius-control) - 1px);
+    --scrubber-progress: 70%;
+  }
+
+  .ui-scrubber:hover:where(:not(.is-disabled)) {
+    border-color: var(--border-control-hover);
+    background: var(--state-hover);
+  }
+
+  .ui-scrubber:active:where(:not(.is-disabled)) {
+    border-color: var(--border-control-hover);
+    background: var(--state-hover);
+    transition-duration: var(--duration-fast);
+  }
+
+  .ui-scrubber:focus-visible {
+    border-color: var(--border-focus);
+    outline-color: var(--border-focus);
+  }
+
+  .ui-scrubber.is-disabled {
+    cursor: not-allowed;
+    opacity: var(--opacity-disabled);
+    pointer-events: none;
+    background: transparent;
+  }
+
+  /* Translate full-width bar instead of animating width to keep drag scrubbing compositor-only */
+  .ui-scrubber__fill {
+    position: absolute;
+    inset: var(--space-0);
+    background: var(--state-fill);
+    transform: translateX(calc(var(--scrubber-progress) - 100%));
+    pointer-events: none;
+    transition: transform var(--transition-scrubber), background-color var(--transition-ui);
+  }
+
+  .ui-scrubber.is-scrubbing .ui-scrubber__fill {
+    transition: background-color var(--transition-ui);
+  }
+
+  .ui-scrubber:hover:where(:not(.is-disabled)) .ui-scrubber__fill {
+    background: var(--state-fill-hover);
+  }
+
+  .ui-scrubber__fill.is-full {
+    border-radius: var(--_scrubber-inner-radius);
+  }
+
+  .ui-scrubber__value,
+  .ui-scrubber__empty {
+    position: absolute;
+    top: 50%;
+    inset-inline-start: var(--space-control-px);
+    max-width: calc(100% - var(--space-control-px) * 2);
+    transform: translateY(-50%);
+    font-size: var(--text-size-control);
+    line-height: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    pointer-events: none;
+    z-index: var(--z-scrubber-label);
+  }
+
+  .ui-scrubber__value {
+    color: var(--text-primary);
+  }
+
+  .ui-scrubber__empty {
+    color: var(--text-tertiary);
+  }
+
+  .ui-scrubber.is-disabled .ui-scrubber__empty {
+    color: var(--text-primary);
+  }
+
+  @media (forced-colors: active) {
+    .ui-scrubber__fill {
+      background-color: Highlight;
+      border-inline-end: 2px solid Highlight;
+    }
+  }
+}
+

@@ -1,0 +1,193 @@
+@layer reset, foundation, shared, components, app;
+
+@import "./tokens.css" layer(foundation);
+@import "./theme.css" layer(foundation);
+@import "../shared/ui/icon/icon.css" layer(shared);
+@import "../shared/ui/button/button.css" layer(shared);
+@import "../shared/ui/checkbox/checkbox.css" layer(shared);
+@import "../shared/ui/select/select.css" layer(shared);
+@import "../shared/ui/scrubber/scrubber.css" layer(shared);
+@import "../shared/ui/tooltip/tooltip.css" layer(shared);
+@import "../widgets/viewport-canvas/ui/viewport-canvas.css" layer(components);
+@import "../widgets/viewport-toolbar/ui/viewport-toolbar.css" layer(components);
+@import "../widgets/compression-controls/ui/compression-controls.css" layer(components);
+@import "../widgets/queue-panel/ui/queue-panel.css" layer(components);
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-variant-numeric: tabular-nums;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    font-variant-numeric: inherit;
+  }
+
+  @supports not selector(::-webkit-scrollbar) {
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-divider) transparent;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: var(--size-scrollbar);
+    height: var(--size-scrollbar);
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-divider);
+    border-radius: var(--radius-xs);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--border-control);
+  }
+}
+
+@layer app {
+  html {
+    height: 100%;
+    font-size: clamp(1rem, 0.8rem + 0.22vw, 1.375rem);
+    overflow: hidden;
+  }
+
+  body {
+    height: 100vh;
+    height: 100dvh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    background-color: var(--surface-panel);
+    color: var(--text-primary);
+    font-size: var(--text-size-body);
+    line-height: 1.5;
+  }
+
+  #app {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .app-shell {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+    background-color: var(--surface-panel);
+  }
+
+  .app-sidebar {
+    position: relative;
+    width: var(--size-sidebar-w);
+    height: 100%;
+    flex-shrink: 0;
+    background-color: var(--surface-panel);
+    z-index: var(--z-sidebar);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .app-stage {
+    flex: 1;
+    min-width: var(--space-0);
+    height: 100%;
+    padding: var(--space-viewport-frame) var(--space-viewport-frame) var(--space-viewport-frame) var(--space-0);
+    display: flex;
+  }
+
+  .app-sidebar-header {
+    padding: var(--space-4) var(--space-6);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .app-brand-title {
+    font-size: var(--text-size-brand);
+    color: var(--text-primary);
+    line-height: 1;
+    font-weight: 400;
+  }
+
+  .app-divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--border-divider);
+    flex-shrink: 0;
+  }
+
+  .is-hidden {
+    display: none;
+  }
+
+  @media (45rem < width <= 56rem) {
+    .app-sidebar {
+      --size-sidebar-w: 17.5rem;
+    }
+  }
+
+  @media (width <= 45rem) {
+    .app-shell {
+      flex-direction: column-reverse;
+    }
+
+    .app-sidebar {
+      width: 100%;
+      height: auto;
+      max-height: var(--size-mobile-sidebar-max-h);
+      overflow: visible;
+      border-top: 1px solid var(--border-divider);
+    }
+
+    .app-stage {
+      flex: 1 1 0;
+      width: 100%;
+      min-height: var(--size-mobile-stage-min-h);
+      padding: var(--space-viewport-frame);
+    }
+
+    .app-sidebar-header {
+      padding: var(--space-2-5) var(--space-4);
+    }
+  }
+
+  @media (width <= 22rem) {
+    .app-stage {
+      min-height: var(--size-mobile-stage-min-h-compact);
+    }
+  }
+
+  @media (height <= 32rem) {
+    .app-stage {
+      min-height: var(--size-mobile-stage-min-h-compact);
+    }
+  }
+}

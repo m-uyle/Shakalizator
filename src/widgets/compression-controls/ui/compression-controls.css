@@ -1,0 +1,54 @@
+@layer components {
+  .compression-controls {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    flex-shrink: 0;
+  }
+
+  .compression-controls__group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: var(--space-0);
+  }
+
+  .compression-controls__label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    min-width: var(--space-0);
+    font-size: var(--text-size-caption);
+    line-height: 1.25;
+    color: var(--text-secondary);
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .compression-controls__label > span:first-child {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .compression-controls__target {
+    color: var(--text-tertiary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: var(--space-0);
+    font-variant-ligatures: none;
+    font-feature-settings: "calt" 0;
+  }
+
+  @media (width <= 45rem) {
+    .compression-controls {
+      padding: var(--space-2-5) var(--space-4);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(var(--space-0), 1fr));
+      gap: var(--space-2-5);
+    }
+  }
+}
+

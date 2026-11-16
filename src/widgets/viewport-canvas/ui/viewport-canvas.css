@@ -1,0 +1,141 @@
+@layer components {
+  .viewport-canvas {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--surface-canvas);
+    border-radius: var(--radius-viewport-panel);
+    overflow: clip;
+    cursor: default;
+    z-index: var(--z-canvas);
+  }
+
+  .viewport-canvas.has-image {
+    cursor: grab;
+    touch-action: none;
+  }
+
+  .viewport-canvas.has-image:active,
+  .viewport-canvas.has-image.is-panning {
+    cursor: grabbing;
+  }
+
+  .viewport-canvas__surface {
+    position: absolute;
+    inset-block-start: var(--space-0);
+    inset-inline-start: var(--space-0);
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .viewport-empty-prompt {
+    position: absolute;
+    inset: var(--space-0);
+    width: 100%;
+    height: 100%;
+    padding: var(--space-4);
+    border: 1px solid transparent;
+    border-radius: var(--radius-viewport-panel);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: var(--text-size-body);
+    color: var(--text-secondary);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: color var(--transition-ui), border-color var(--transition-ui);
+  }
+
+  .viewport-empty-prompt:hover:where(:not(:disabled)) {
+    color: var(--text-contrast);
+    background: transparent;
+  }
+
+  .viewport-empty-prompt:active:where(:not(:disabled)) {
+    transform: none;
+    background: transparent;
+    color: var(--text-primary);
+  }
+
+  .viewport-empty-prompt:focus-visible {
+    border-color: var(--border-focus);
+    outline-color: var(--border-focus);
+  }
+
+  .viewport-error-prompt {
+    position: absolute;
+    inset: var(--space-0);
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    text-align: center;
+    font-size: var(--text-size-body);
+    color: var(--text-warning);
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .viewport-error-prompt__title,
+  .viewport-error-prompt__detail {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .viewport-error-prompt__title {
+    color: var(--text-primary);
+  }
+
+  .viewport-error-prompt__detail {
+    color: var(--text-secondary);
+    font-size: var(--text-size-caption);
+  }
+
+  .viewport-drop-overlay {
+    position: absolute;
+    inset: var(--space-2);
+    padding: var(--space-4);
+    border: 1px dashed var(--border-control-hover);
+    border-radius: var(--radius-viewport-panel);
+    background-color: var(--state-hover);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: var(--text-size-control);
+    color: var(--text-contrast);
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    z-index: var(--z-floating);
+    opacity: 0;
+    transition: opacity var(--transition-ui);
+  }
+
+  .viewport-canvas.is-drag-over .viewport-drop-overlay {
+    opacity: 1;
+  }
+
+  @media (forced-colors: active) {
+    .viewport-canvas {
+      border: 1px solid CanvasText;
+    }
+
+    .viewport-empty-prompt:focus-visible {
+      border-color: Highlight;
+      outline-color: Highlight;
+    }
+
+    .viewport-drop-overlay {
+      border-color: Highlight;
+    }
+  }
+}
+
